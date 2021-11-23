@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>延时小广告</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+       body{
+           position: relative;
+       }
+       .div_{
+           width: 1550px;
+           height: 750px;
+           background: url(./背景1.png)no-repeat;
+       }
+        #xiaoguanggao{
+            background-color:rgb(19,60,17);
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            display: none;
+   
+           position: absolute;
+            top: 16px;
+            left:400px;
+
+
+        }
+        #imgsss{
+           position: absolute;
+   
+           left: 552px;
+           top: 83px;
+
+        }
+
+        #uls {
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+           
+            position: relative;
+            left: 0px;
+            top: 74px;
+           
+        }
+
+        li {
+            width: 150px;
+            height: 150px;
+            background: rgb(19,60,17);
+            float: left;
+            list-style: none;
+            margin: 5px;
+            color: #fff;
+            text-align: center;
+            line-height: 150px;
+            font-size: 20px;
+            font-weight: bold;
+
+        }
+
+        #uls li button {
+            width: 50px;
+            height: 30px;
+        }
+
+        .light {
+            width: 150px;
+            height: 150px;
+            background: rgb(17,114,3);
+            color: #fff;
+        }
+        .two{
+            position: absolute;
+            left: 267px;
+            top: 57px;
+        }
+        .two>div{
+    width: 273px;
+    height: 26px;
+   
+    position: absolute;
+    left: -44px;
+    top: 10px;
+    background: url(./滚动1.png) no-repeat 0px 0px;
+    background-size: 1250px 21px;
+    animation: qizi 20s infinite linear;
+
+}
+/* 滚动条动画 */
+@keyframes qizi{
+           
+    0%{
+       background-position: 0px 0px;
+    }
+    100%{
+        background-position: -1250px 0px;
+}
+}
+
+
+#uls>li>span{
+    /* font-size: 22px;
+    font-family: 楷体;
+    font-weight: 900; */
+    color: red;
+}
+#p{
+    position: relative;
+    top: 33px;
+   left: 1155px;
+   color: red;
+}
+        </style>
+</head>
+<body>
+  <div class="div_">
+      <p id="p">马爸爸大礼包倒计时：<span id="span_">10</span>s</p>
+    <div id="xiaoguanggao"> 
+        <span class="two"><div></div></span>
+        <img src="./QQ截图20211116155137.png" alt="" id="imgsss" onclick="imgsss()">
+         <ul id='uls'>
+     <li class="light"><span>1</span>个月绿钻</li>
+     <li >谢谢惠顾</li>
+     
+     <li >下次继续</li>
+     <li >这次不行</li>
+     <li ><button id='btn1'>开始</button> <button id='btn2'>停止</button></li>
+     <li >继续加油</li>
+     <li >谢谢惠顾</li>
+     <li >再接再厉</li>
+     <li >再来一次</li>
+ </ul>
+ </div>
+  </div>
+  
+</body>
+</html>
+<script>
+ 
+    var list = document.getElementsByTagName('li');
+    var btn1 = document.getElementById('btn1');//开始按钮
+    var btn2 = document.getElementById('btn2');//结束
+
+    var num = 0;//计数器  ++
+    var  timer = null;
+
+    // 定义数组  用来保存 按照顺序旋转的 li 标签的下标
+    var arr = [0,1,2,5,8,7,6,3];
+
+
+    btn1.onclick = function(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            // 计时器执行的时候 把所有的样式 清空哪个   类名为空
+            for(var i = 0;i<arr.length;i++){
+               list[arr[i]].className = '';
+            }
+
+            // 计数器上场 
+            num++;
+            if(num>=arr.length){
+                num = 0;
+            }
+
+            list[arr[num]].className = 'light';
+        },30);
+    }
+
+
+    btn2.onclick = function(){
+        clearInterval(timer);
+    }
+
+
+
+
+    function imgsss(){
+        var aaa=     document.getElementsByTagName('div')[1];
+        aaa.style.display='none'
+    }
+</script>
+<script>
+    
+     abb=   setInterval(function(){
+        //    document.getElementById('uls')
+   var aaa=     document.getElementById('xiaoguanggao');
+           aaa.style.display='block'
+           clearInterval(abb)
+    },10000)
+    abb()
+</script>
+<script>
+    var span_=document.getElementById('span_');
+    var number=10;
+ acc=   setInterval(function(){
+        number--;
+        span_.innerHTML=number;
+        if(number==0){
+            clearInterval(acc);
+        }
+    },1000)
+</script>
+
